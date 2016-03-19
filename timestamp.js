@@ -18,8 +18,7 @@ var server = http.createServer(function (req, res) {
     if (path.indexOf('%20') != -1) {
         var strDate = path.replace(/%20/g,' ');
         var date = Date.parse(strDate);
-        console.log(date);
-        
+
         if (date != null) {
             jsonString.unix = date.getTime()/1000;
             jsonString.natural = date.toString("MMMM") + " " + date.getDate() + ", " + date.getFullYear();
