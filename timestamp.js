@@ -26,9 +26,11 @@ var server = http.createServer(function (req, res) {
         }
 
     }
-    else {
+    else if (path != '') {
+        var unixTime = +path*1000;
+
         var date = new Date();
-        date.setTime(+path*1000);
+        date.setTime(unixTime);
 
         if (date != 'Invalid Date') {
             jsonString.unix = +path;
