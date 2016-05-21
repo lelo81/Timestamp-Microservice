@@ -5,6 +5,9 @@
   "main": "timestamp.js",
   "repository": "",
   "author": "Leandro Lopes",
+  "scripts": {
+  "start": "node timestamp.js"
+  },  
   "dependencies": {
     "url":"0.11.0",
     "datejs":"1.0.0-rc3",
