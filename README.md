@@ -4,7 +4,7 @@ User stories:
 2) If it does, it returns both the Unix timestamp and the natural language form of that date.
 3) If it does not contain a date or Unix timestamp, it returns null for those properties.
 Example usage:
-https://timestamp-microservice-lelo81.c9users.io/December%2015,%202015
-https://timestamp-microservice-lelo81.c9users.io/1450137600
+https://lelo-timestamp-microservice.herokuapp.com/December%2015,%202015
+https://lelo-timestamp-microservice.herokuapp.com/1450137600
 Example output:
 { "unix": 1450137600, "natural": "December 15, 2015" }

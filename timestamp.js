@@ -1,23 +1,31 @@
-var http = require('http');
+var npmPath = require('path');
+var express = require('express');
+var app = express();
 var url = require('url');
 require('datejs');
+    var favicon = require('serve-favicon');
 
-var server = http.createServer(function (req, res) {
+app.use(favicon(__dirname + '/clementine_150.png'));
+
+app.get('/', function(req, res) {   
+    res.sendFile(npmPath.join(__dirname, '/index.html'));
+});
+
+app.get('/:param1', function(req, res) {    
     if (req.method != 'GET')
         return res.end('send me a GET\n');
         
-    var path = url.parse(req.url,true).pathname;
-    path = path.substr(1,path.length);
+    var path = req.params.param1;
 
     var jsonString = {
         unix: null,
         natural: null
     };
-    
 
-    if (path.indexOf('%20') != -1) {
-        var strDate = path.replace(/%20/g,' ');
-        var date = Date.parse(strDate);
+
+    if (path.indexOf(' ') != -1) {
+
+        var date = Date.parse(path);
 
         if (date != null) {
             jsonString.unix = date.getTime()/1000;
@@ -39,9 +47,11 @@ var server = http.createServer(function (req, res) {
     
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(jsonString));
-
-
+        
 });
 
-server.listen(process.env.PORT);
-console.log("App listening on IP:" + process.env.IP + " and PORT:" + process.env.PORT);
+var port = process.env.PORT || 8080;
+app.listen(port,  function () {
+	console.log('Node.js listening on port ' + port + '...');
+});
+
